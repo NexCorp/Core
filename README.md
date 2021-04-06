@@ -2,6 +2,8 @@
 
 # Nexus Core
 
+Community NexCorp Discord: https://discord.gg/rmCv7UJVPD
+
 **What is?**
 ESX 1.2 Extended Version 
 
