@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+body {
+  background-color: transparent !important;
+  overflow: hidden; /* Hide scrollbars */
+}
+
+@font-face {
+  font-family: 'Pricedown';
+  src: url('../fonts/pdown.ttf');
+}
+
+@font-face {
+  font-family: 'bankgothic';
+  src: url('../fonts/bankgothic.ttf');
+}
+
+html {
+  overflow: hidden;
+}
+
+#hud {
+  opacity: 0;
+  position: absolute;
+  font-family: 'Pricedown';
+  font-size: 35px;
+  color: white;
+  padding: 4px;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+  text-align: right;
+  top: 80;
+  right: 40;
+}
+
+#inventory_notifications {
+  font-family: bankgothic;
+  position: absolute;
+  right: 10%;
+  bottom: 40;
+  font-size: 0.9em;
+  font-weight: bold;
+  color: rgb(242, 241, 241);
+  border-radius: 1px;
+}
+
+.notify {
+  margin-top: 5px;
+  background-color: #2c2c2c21;
+  padding: 8px 15px 8px 15px;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+  border-radius: 7px;
+}
+
+/*
+position: fixed;
+  right: 10%;
+  bottom: -50px;
+  background-color: #323232;
+  padding: 12px 24px 17px 24px;
+  vertical-align: middle;
+  color: #fff;
+  box-shadow: 0 7px 18px rgba(0,0,0,0.2);
+  border-radius: 1px;
+*/
+
+.menu {
+  font-family: 'Open Sans', sans-serif;
+  min-width: 400px;
+  min-height: 250px;
+  color: #fff;
+  position: absolute;
+  left: 40;
+  top: 0;
+}
+
+.menu .head {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 28px;
+  padding: 10px;
+  background: #1a1a1a;
+  border-bottom: 3px solid #bc1635;
+  border-radius: 10px 10px 0 0;
+  -webkit-border-radius: 10px 10px 0 0;
+  -moz-border-radius: 10px 10px 0 0;
+  -o-border-radius: 10px 10px 0 0;
+  box-shadow: inset 0px 1px 0 rgba(255, 255, 255, 0.28);
+  -webkit-box-shadow: inset 0px 1px 0 rgba(255, 255, 255, 0.28);
+  -moz-box-shadow: inset 0px 1px 0 rgba(255, 255, 255, 0.28);
+  -o-box-shadow: inset 0px 1px 0 rgba(255, 255, 255, 0.28);
+  box-shadow: 1px 1px 10px 4px rgba(0, 0, 0, 0.4);
+}
+
+.menu .head span {
+  font-family: 'Pricedown';
+  font-size: 28px;
+  padding-left: 15px;
+  padding-top: 6px;
+}
+
+.menu .menu-items .menu-item {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  height: 40px;
+  display: block;
+  background-color: #f1f1f1;
+  box-shadow: inset 1px 0px 0px 1px #b8b8b8;
+  height: 32px;
+  line-height: 32px;
+  color: #3a3a3a;
+  text-align: center;
+}
+
+.menu .menu-items .menu-item.selected {
+  background-color: #ccc;
+}
+
+@keyframes slideInRight {
+  from {
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.template,
+.notification {
+  display: none;
+  font-family: 'Poppins', sans-serif;
+}
+
+.notif-container {
+  margin-top: 53px;
+  width: 25%; /* was 20% */
+  position: absolute;
+
+  right: 2%; /* was 15% */
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+}
+
+.notifheader {
+  margin-top: -1%;
+  font: caption;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.notification {
+  animation-name: slideInRight;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  width: 375px;
+  height: auto;
+  padding: 10px;
+  padding-bottom: 0px;
+  margin-top: -1px;
+  font-family: 'Poppins', sans-serif;
+  margin: 5px;
+  font: caption;
+  font-size: 14px;
+}
+
+.success {
+  background-color: rgba(0, 255, 0, 0.5);
+  box-shadow: -4px 0px 0px 0px rgb(0, 255, 0) inset;
+  color: #ffffff;
+}
+
+.inform {
+  background-color: rgba(49, 108, 163, 0.5);
+  box-shadow: -4px 0px 0px 0px rgb(0, 183, 255) inset;
+  color: #ffffff;
+}
+
+.error {
+  background-color: rgba(255, 0, 0, 0.5);
+  box-shadow: -4px 0px 0px 0px rgb(255, 0, 0) inset;
+  color: #ffffff;
+}
