@@ -2,9 +2,9 @@ fx_version 'adamant'
 
 game 'gta5'
 
-description 'ES Extended'
+description 'NEX Core'
 
-version '1.2.0'
+version '1.0.0'
 
 server_scripts {
 	'@async/async.lua',
@@ -14,6 +14,7 @@ server_scripts {
 	'locales/en.lua',
 
 	'config.lua',
+	'config_s.lua',
 	'config.weapons.lua',
 
 	'server/common.lua',
@@ -33,7 +34,6 @@ client_scripts {
 	'locales/en.lua',
 
 	'config.lua',
-	'config_s.lua',
 	'config.weapons.lua',
 
 	'client/common.lua',
