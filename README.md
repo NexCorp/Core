@@ -2,6 +2,9 @@
 
 # Nexus Core
 
+Community Support NexCorp Discord: https://discord.gg/rmCv7UJVPD
+See the wiki: https://github.com/NexCorp/Core/wiki
+
 **What is?**
 ESX 1.2 Extended Version 
 
@@ -52,7 +55,7 @@ Important:
 | nex_basic | 2.0 | LUA | Basic functions for RP (or any) server. Over 20 modular functions | Work for deploy
 | nex_hifi | 2.0 | LUA | Radio in game, (*movable with nex_factions*) With entity and sound tracking | Work for deploy
 
-Many more on the way 😋
+See more in [Extensions for NexCore](https://github.com/NexCorp/Core/wiki/Extensions)
 
 ![](https://i.imgur.com/QwDvwLq.png)
 
