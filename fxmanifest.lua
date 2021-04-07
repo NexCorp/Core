@@ -2,9 +2,9 @@ fx_version 'cerulean'
 
 game 'gta5'
 
-description 'ES Extended'
+description 'NEX Core'
 
-version '1.2.0'
+version '1.0.0'
 
 server_scripts {
 	'@async/async.lua',

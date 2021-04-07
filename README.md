@@ -2,7 +2,8 @@
 
 # Nexus Core
 
-Community NexCorp Discord: https://discord.gg/rmCv7UJVPD
+Community Support NexCorp Discord: https://discord.gg/rmCv7UJVPD
+See the wiki: https://github.com/NexCorp/Core/wiki
 
 **What is?**
 ESX 1.2 Extended Version 
