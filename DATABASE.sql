@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 -- La exportación de datos fue deseleccionada.
 
--- Volcando estructura para tabla apzombies.users_characters
+-- Volcando estructura para tabla nex_db.users_characters
 CREATE TABLE IF NOT EXISTS `users_characters` (
   `characterId` int(11) NOT NULL AUTO_INCREMENT,
   `identifier` varchar(255) NOT NULL,
@@ -65,7 +65,74 @@ CREATE TABLE IF NOT EXISTS `users_characters` (
   KEY `identifier` (`identifier`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
+-- Volcando estructura para tabla apzombies.items
+CREATE TABLE IF NOT EXISTS `items` (
+  `name` varchar(50) NOT NULL,
+  `label` varchar(50) NOT NULL,
+  `weight` int(11) NOT NULL DEFAULT 1,
+  `rare` tinyint(4) NOT NULL DEFAULT 0,
+  `can_remove` tinyint(4) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 -- La exportación de datos fue deseleccionada.
+
+-- Volcando estructura para tabla apzombies.jobs
+CREATE TABLE IF NOT EXISTS `jobs` (
+  `name` varchar(50) NOT NULL,
+  `label` varchar(50) DEFAULT NULL,
+  `whitelisted` int(11) DEFAULT 0,
+  PRIMARY KEY (`name`),
+  KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- La exportación de datos fue deseleccionada.
+
+-- Volcando estructura para tabla apzombies.job_grades
+CREATE TABLE IF NOT EXISTS `job_grades` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `job_name` varchar(50) DEFAULT NULL,
+  `grade` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `label` varchar(50) NOT NULL,
+  `salary` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=latin1;
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
+-- Volcando estructura para tabla apzombies.jobs
+CREATE TABLE IF NOT EXISTS `jobs` (
+  `name` varchar(50) NOT NULL,
+  `label` varchar(50) DEFAULT NULL,
+  `whitelisted` int(11) DEFAULT 0,
+  PRIMARY KEY (`name`),
+  KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Volcando datos para la tabla apzombies.jobs: ~22 rows (aproximadamente)
+/*!40000 ALTER TABLE `jobs` DISABLE KEYS */;
+INSERT INTO `jobs` (`name`, `label`, `whitelisted`) VALUES ('unemployed', 'Desempleado', 0);
+/*!40000 ALTER TABLE `jobs` ENABLE KEYS */;
+
+
+-- Volcando datos para la tabla apzombies.job_grades: ~95 rows (aproximadamente)
+/*!40000 ALTER TABLE `job_grades` DISABLE KEYS */;
+INSERT INTO `job_grades` (`id`, `job_name`, `grade`, `name`, `label`, `salary`) VALUES
+	(1, 'unemployed', 0, 'desempleado', 'Sin trabajo', 200);
+/*!40000 ALTER TABLE `job_grades` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
