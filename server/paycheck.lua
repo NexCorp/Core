@@ -36,25 +36,21 @@ NEX.StartPayCheck = function()
 						
 						local isVip = xPlayer.isVip()
 						local bonus = 0
-						local iva = salary * 0.16
+						local iva = 0
+
+						if Config.EnableTax then
+							iva = salary * Config.Tax
+						end
 
 						if string.match(job, "off") then
 							xPlayer.addAccountMoney('bank', salary)
 							TriggerClientEvent('nex:Core:showAdvancedNotification', xPlayer.source, _U('bank'), _U('received_paycheck'), _U('received_salary', salary, 0, 0), 'CHAR_BANK_MAZE', 9)
 						else
 							if isVip > 0 then
-								if isVip == 1 then
-									bonus = salary*0.1
-								elseif isVip == 2 then
-									bonus = salary*0.2
-								elseif isVip == 3 then
-									bonus = salary*0.3
-								elseif isVip == 4 then
-									bonus = salary*0.4
-								elseif isVip == 5 then
-									bonus = salary*0.5
-								elseif isVip == 6 then
-									bonus = salary*0.6
+								if Config.VipTiers[isVip] then
+									bonus = salary * Config.VipTiers[isVip]
+								else
+									bonus = Config.VipTierDefault
 								end
 							end
 
@@ -63,11 +59,13 @@ NEX.StartPayCheck = function()
 
 							TriggerClientEvent('nex:Core:showAdvancedNotification', xPlayer.source, _U('bank'), _U('received_paycheck'), _U('received_salary', finalSalary, iva, bonus), 'CHAR_BANK_MAZE', 9)
 							
-							TriggerEvent('nex:Factions:Accounts:getSharedAccount', 'society_mazebank', function(account)
-								if account ~= nil then
-									account.addMoney(iva)
-								end
-							end)
+							if Config.SendTaxToMazeBankSociety then
+								TriggerEvent('nex:Factions:Accounts:getSharedAccount', 'society_mazebank', function(account)
+									if account ~= nil then
+										account.addMoney(iva)
+									end
+								end)
+							end
 						end
 					end
 				end
