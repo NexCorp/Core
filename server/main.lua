@@ -1,5 +1,5 @@
 Citizen.CreateThread(function()
-	SetMapName('Good Life City')
+	SetMapName(Config.ServerName)
 	SetGameType('Roleplay')
 end)
 
