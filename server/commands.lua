@@ -83,7 +83,7 @@ end, true, {help = _U('command_setjob'), validate = true, arguments = {
 }})
 
 NEX.RegisterCommand('car', 'admin', function(xPlayer, args, showError)
-	xPlayer.triggerEvent('nex_admin:runSpawnCommand', args.car)
+	xPlayer.triggerEvent('nex:Core:runSpawnCommand', args.car)
 end, false, {help = _U('command_car'), validate = false, arguments = {
 	{name = 'car', help = _U('command_car_car'), type = 'any'}
 }})

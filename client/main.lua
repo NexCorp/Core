@@ -376,6 +376,66 @@ AddEventHandler('nex:Core:deleteVehicle', function(radius)
 	end
 end)
 
+RegisterNetEvent("nex:Core:runSpawnCommand")
+AddEventHandler("nex:Core:runSpawnCommand", function(model, livery)
+    Citizen.CreateThread(function()
+
+        local hash = GetHashKey(model)
+
+        if not IsModelAVehicle(hash) then return end
+        if not IsModelInCdimage(hash) or not IsModelValid(hash) then return end
+        
+        RequestModel(hash)
+
+        while not HasModelLoaded(hash) do
+            Citizen.Wait(0)
+        end
+
+        local localped = PlayerPedId()
+        local coords = GetOffsetFromEntityInWorldCoords(PlayerPedId(), 1.5, 5.0, 0.0)
+
+        local heading = GetEntityHeading(localped)
+        local vehicle = CreateVehicle(hash, coords, heading, true, false)
+
+        SetVehicleModKit(vehicle, 0)
+        SetVehicleMod(vehicle, 11, 3, false)
+        SetVehicleMod(vehicle, 12, 2, false)
+        SetVehicleMod(vehicle, 13, 2, false)
+        SetVehicleMod(vehicle, 15, 3, false)
+        SetVehicleMod(vehicle, 16, 4, false)
+
+
+        if model == "pol1" then
+            SetVehicleExtra(vehicle, 5, 0)
+        end
+
+        if model == "police" then
+            SetVehicleWheelType(vehicle, 2)
+            SetVehicleMod(vehicle, 23, 10, false)
+            SetVehicleColours(vehicle, 0, false)
+            SetVehicleExtraColours(vehicle, 0, false)
+        end
+
+        if model == "pol7" then
+            SetVehicleColours(vehicle,0)
+            SetVehicleExtraColours(vehicle,0)
+        end
+
+        if model == "pol5" or model == "pol6" then
+            SetVehicleExtra(vehicle, 1, -1)
+        end
+
+        SetModelAsNoLongerNeeded(hash)
+        
+        SetVehicleDirtLevel(vehicle, 0)
+        SetVehicleWindowTint(vehicle, 0)
+
+        if livery ~= nil then
+            SetVehicleLivery(vehicle, tonumber(livery))
+        end
+    end)
+end)
+
 -- Pause menu disables HUD display
 if Config.EnableHud then
 	-- Citizen.CreateThread(function()
