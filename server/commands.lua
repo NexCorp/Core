@@ -50,6 +50,13 @@ end, false, {help = 'Reload priority queue.', validate = true, arguments = {}})
 -- }})
 
 NEX.RegisterCommand('setjob', 'admin', function(xPlayer, args, showError)
+
+	-- Temp fix for 'console' commands use
+	if not xPlayer then
+		xPlayer = {}
+		xPlayer.source = nil
+	end
+
 	if NEX.DoesJobExist(args.job, args.grade) then
 		if args.category == 1 or args.category == 2 then
 			args.playerId.setJob(args.category, args.job, args.grade)
@@ -88,6 +95,13 @@ end, false, {help = _U('command_cardel'), validate = false, arguments = {
 }})
 
 NEX.RegisterCommand('setaccountmoney', 'admin', function(xPlayer, args, showError)
+
+	-- Temp fix for 'console' commands use
+	if not xPlayer then
+		xPlayer = {}
+		xPlayer.source = nil
+	end
+
 	if args.playerId.getAccount(args.account) then
 		args.playerId.setAccountMoney(args.account, args.amount)
 		NEX.RegisterLog(xPlayer.source, "ACTION", "Set money:\nReceives: " .. args.playerId.getName() .. "(".. args.playerId.charId .." [".. args.playerId.dbId .."]) [Bill: " .. args.account .. " ($".. args.amount ..")]")
@@ -101,6 +115,13 @@ end, true, {help = _U('command_setaccountmoney'), validate = true, arguments = {
 }})
 
 NEX.RegisterCommand('giveaccountmoney', 'admin', function(xPlayer, args, showError)
+
+	-- Temp fix for 'console' commands use
+	if not xPlayer then
+		xPlayer = {}
+		xPlayer.source = nil
+	end
+
 	if args.playerId.getAccount(args.account) then
 		args.playerId.addAccountMoney(args.account, args.amount)
 		NEX.RegisterLog(xPlayer.source, "ACTION", "Add money:\nReceives: " .. args.playerId.getName() .. "(".. args.playerId.charId .." [".. args.playerId.dbId .."]) [Bill: " .. args.account .. " ($".. args.amount ..")]")
@@ -116,7 +137,13 @@ end, true, {help = _U('command_giveaccountmoney'), validate = true, arguments = 
 
 NEX.RegisterCommand('giveitem', 'admin', function(xPlayer, args, showError)
 	--args.playerId.addInventoryItem(args.item, args.count)
-	print(xPlayer.source, args.item, args.count)
+	
+	-- Temp fix for 'console' commands use
+	if not xPlayer then
+		xPlayer = {}
+		xPlayer.source = nil
+	end
+
 	TriggerClientEvent('player:receiveItem', args.playerId.source, args.item, args.count)
 	NEX.RegisterLog(xPlayer.source, "ACTION", "Delivery Item:\nReceuves: " .. args.playerId.getName() .. "(".. args.playerId.charId .." [".. args.playerId.dbId .."]) [Item: " .. args.item .. " ($".. args.count ..")]")
 
@@ -189,6 +216,13 @@ end, true, {help = _U('command_clearloadout'), validate = true, arguments = {
 
 NEX.RegisterCommand('setgroup', 'admin', function(xPlayer, args, showError)
 	args.playerId.setGroup(args.group)
+
+	-- Temp fix for 'console' commands use
+	if not xPlayer then
+		xPlayer = {}
+		xPlayer.source = nil
+	end
+
 	NEX.RegisterLog(xPlayer.source, "ACTION", "Command: /setgroup\nAssign the group of: " .. args.playerId.getName() .. " [".. args.playerId.dbId .."]" .. " to " .. args.group)
 end, true, {help = _U('command_setgroup'), validate = true, arguments = {
 	{name = 'playerId', help = _U('commandgeneric_playerid'), type = 'player'},
@@ -219,7 +253,7 @@ end, true, {help = 'Activate / Deactivate the HUD'})
 
 if Config.EnablePayCommand then
 
-	NEX.RegisterCommand('pagar', 'user', function(xPlayer, args, showError)
+	NEX.RegisterCommand('pay', 'user', function(xPlayer, args, showError)
 
 		local amount = args.monto
 		local targetPlayer = args.paypal
