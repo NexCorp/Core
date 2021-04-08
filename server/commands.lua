@@ -1,6 +1,6 @@
 NEX.RegisterCommand('tp', 'admin', function(xPlayer, args, showError)
 	local currentCoords = xPlayer.getCoords(true)
-	NEX.RegisterLog(xPlayer.source, "ACTION", "Comando: /tp\nTeleport [".. currentCoords.x .. " " .. currentCoords.y .. " " .. currentCoords.z .."] a [".. args.x .. " " .. args.y .. " " .. args.z .."]" )
+	NEX.RegisterLog(xPlayer.source, "ACTION", "Command: /tp\nTeleport [".. currentCoords.x .. " " .. currentCoords.y .. " " .. currentCoords.z .."] a [".. args.x .. " " .. args.y .. " " .. args.z .."]" )
 	xPlayer.setCoords({x = args.x, y = args.y, z = args.z})
 	
 end, false, {help = _U('command_setcoords'), validate = true, arguments = {
@@ -13,23 +13,23 @@ NEX.RegisterCommand('reloadjobs', 'admin', function(xPlayer, args, showError)
 	NEX.ReloadJobs()
 	xPlayer.sendAlert({
 		type = "success",
-		title = "¡Trabajos Recargados!",
-		text = "El sistema iniciará pronto para todos...",
+		title = "Reloaded Jobs!",
+		text = "The system will start soon for everyone...",
 		length = 4000,
 		style = {}
 	})
-end, false, {help = 'Recarga los trabajos de la base de datos.', validate = true, arguments = {}})
+end, false, {help = 'Reload the job database.', validate = true, arguments = {}})
 
 NEX.RegisterCommand('reloadqueue', 'admin', function(xPlayer, args, showError)
 	TriggerEvent('QueueNex:RefreshList')
 	xPlayer.sendAlert({
 		type = "success",
-		title = "¡Cola de prioridad Recargada!",
-		text = "El sistema iniciará pronto para todos...",
+		title = "Priority Queue Reloaded!",
+		text = "The system will start soon for everyone...",
 		length = 4000,
 		style = {}
 	})
-end, false, {help = 'Recargar cola de prioridad.', validate = true, arguments = {}})
+end, false, {help = 'Reload priority queue.', validate = true, arguments = {}})
 
 
 
@@ -55,15 +55,15 @@ NEX.RegisterCommand('setjob', 'admin', function(xPlayer, args, showError)
 			args.playerId.setJob(args.category, args.job, args.grade)
 			local data = {
 				type = "success",
-				title = "¡Trabajo Cambiado!",
-				text = "Nuevo trabajo al jugador " .. args.playerId.source .. " a " .. args.job .. " [".. args.category .."]",
+				title = "Job Changed!",
+				text = "New job to the player! " .. args.playerId.source .. " a " .. args.job .. " [".. args.category .."]",
 				length = 4000,
 				style = {}
 			  }
 			xPlayer.sendAlert(data)
-			NEX.RegisterLog(xPlayer.source, "ACTION", "Comando: /setjob\nCambia el trabajo #".. args.category .." de DB: "..args.playerId.dbId.." a " .. "(".. args.job .." [".. args.grade .."])")
+			NEX.RegisterLog(xPlayer.source, "ACTION", "Command: /setjob\nChange the job #".. args.category .." from DB: "..args.playerId.dbId.." to " .. "(".. args.job .." [".. args.grade .."])")
 		else
-			showError("No existe la categoria, intenta 1 o 2.")
+			showError("There is no category, try 1 or 2.")
 		end
 	else
 		showError(_U('command_setjob_invalid'))
@@ -90,7 +90,7 @@ end, false, {help = _U('command_cardel'), validate = false, arguments = {
 NEX.RegisterCommand('setaccountmoney', 'admin', function(xPlayer, args, showError)
 	if args.playerId.getAccount(args.account) then
 		args.playerId.setAccountMoney(args.account, args.amount)
-		NEX.RegisterLog(xPlayer.source, "ACTION", "Establecer dinero:\nRecibe: " .. args.playerId.getName() .. "(".. args.playerId.charId .." [".. args.playerId.dbId .."]) [Cuenta: " .. args.account .. " ($".. args.amount ..")]")
+		NEX.RegisterLog(xPlayer.source, "ACTION", "Set money:\nReceives: " .. args.playerId.getName() .. "(".. args.playerId.charId .." [".. args.playerId.dbId .."]) [Bill: " .. args.account .. " ($".. args.amount ..")]")
 	else
 		showError(_U('command_giveaccountmoney_invalid'))
 	end
@@ -103,7 +103,7 @@ end, true, {help = _U('command_setaccountmoney'), validate = true, arguments = {
 NEX.RegisterCommand('giveaccountmoney', 'admin', function(xPlayer, args, showError)
 	if args.playerId.getAccount(args.account) then
 		args.playerId.addAccountMoney(args.account, args.amount)
-		NEX.RegisterLog(xPlayer.source, "ACTION", "Agrega dinero:\nRecibe: " .. args.playerId.getName() .. "(".. args.playerId.charId .." [".. args.playerId.dbId .."]) [Cuenta: " .. args.account .. " ($".. args.amount ..")]")
+		NEX.RegisterLog(xPlayer.source, "ACTION", "Add money:\nReceives: " .. args.playerId.getName() .. "(".. args.playerId.charId .." [".. args.playerId.dbId .."]) [Bill: " .. args.account .. " ($".. args.amount ..")]")
 
 	else
 		showError(_U('command_giveaccountmoney_invalid'))
@@ -118,7 +118,7 @@ NEX.RegisterCommand('giveitem', 'admin', function(xPlayer, args, showError)
 	--args.playerId.addInventoryItem(args.item, args.count)
 	print(xPlayer.source, args.item, args.count)
 	TriggerClientEvent('player:receiveItem', args.playerId.source, args.item, args.count)
-	NEX.RegisterLog(xPlayer.source, "ACTION", "Entrega Item:\nRecibe: " .. args.playerId.getName() .. "(".. args.playerId.charId .." [".. args.playerId.dbId .."]) [Item: " .. args.item .. " ($".. args.count ..")]")
+	NEX.RegisterLog(xPlayer.source, "ACTION", "Delivery Item:\nReceuves: " .. args.playerId.getName() .. "(".. args.playerId.charId .." [".. args.playerId.dbId .."]) [Item: " .. args.item .. " ($".. args.count ..")]")
 
 end, true, {help = _U('command_giveitem'), validate = true, arguments = {
 	{name = 'playerId', help = _U('commandgeneric_playerid'), type = 'player'},
@@ -189,7 +189,7 @@ end, true, {help = _U('command_clearloadout'), validate = true, arguments = {
 
 NEX.RegisterCommand('setgroup', 'admin', function(xPlayer, args, showError)
 	args.playerId.setGroup(args.group)
-	NEX.RegisterLog(xPlayer.source, "ACTION", "Comando: /setgroup\nAsigna el grupo de: " .. args.playerId.getName() .. " [".. args.playerId.dbId .."]" .. " a " .. args.group)
+	NEX.RegisterLog(xPlayer.source, "ACTION", "Command: /setgroup\nAssign the group of: " .. args.playerId.getName() .. " [".. args.playerId.dbId .."]" .. " to " .. args.group)
 end, true, {help = _U('command_setgroup'), validate = true, arguments = {
 	{name = 'playerId', help = _U('commandgeneric_playerid'), type = 'player'},
 	{name = 'group', help = _U('command_setgroup_group'), type = 'string'},
@@ -208,11 +208,11 @@ end, true, {help = _U('command_saveall')})
 
 NEX.RegisterCommand('menu', 'admin', function(xPlayer, args, showError)
 	TriggerClientEvent('nex_admin:client:openMenu', xPlayer.source, xPlayer.getGroup(), xPlayer)
-end, true, {help = 'Activar Menu Admin'})
+end, true, {help = 'Activate Admin Menu'})
 
 NEX.RegisterCommand('hud', 'user', function(xPlayer, args, showError)
 	TriggerClientEvent('nex:UI:setVisible', xPlayer.source)
-end, true, {help = 'Activa/Desactiva el HUD'})
+end, true, {help = 'Activate / Deactivate the HUD'})
 
 
 --- BANKING
@@ -228,13 +228,13 @@ if Config.EnablePayCommand then
 			if xPlayer.charId ~= targetPlayer.charId then
 				TriggerClientEvent('banking:client:CheckDistance', xPlayer.source, targetPlayer.source, amount)
           
-				NEX.RegisterLog(xPlayer.source, "ECONOMY", "(Pagar) Entrega Dinero:\nRecibe: " .. targetPlayer.getName() .. "(".. targetPlayer.charId .." [".. targetPlayer.dbId .."]) ($".. amount ..")]")
+				NEX.RegisterLog(xPlayer.source, "ECONOMY", "(Pay) Give Money:\nReceives: " .. targetPlayer.getName() .. "(".. targetPlayer.charId .." [".. targetPlayer.dbId .."]) ($".. amount ..")]")
 
 			else
 				local data = {
 					type = "error",
-					title = "¡Whoops!",
-					text = "La vida es un ciclo, pero, ¿vale la pena entrar en el?",
+					title = "Whoops!",
+					text = "Life is a bycycle, but is it worth getting on?",
 					length = 4000,
 					style = {}
 				}
@@ -243,8 +243,8 @@ if Config.EnablePayCommand then
 		else
 			local data = {
 				type = "error",
-				title = "¡Whoops!",
-				text = "Asegurate de tener dinero suficiente o ingresas una cantidad mayor para pagar.",
+				title = "Whoops!",
+				text = "Make sure you have enough money or enter a larger amount to pay.",
 				length = 4000,
 				style = {}
 			  }

@@ -1,7 +1,7 @@
 Config = {}
 Config.Locale = 'en'
 
-Config.ServerName = "NexCore Server"
+Config.ServerName = "Capital City"
 
 Config.Accounts = {
 	bank = _U('account_bank'),

@@ -6,17 +6,17 @@
 		var $notification = $(document.createElement('div'));
 		$notification.addClass('notification').addClass(data.type);
 
-		var text = "Alerta General"
+		var text = "General Alert"
 	
 		if (data.title !== null && data.title !== undefined){
 			text = data.title
 		}else{
 			if (data.type === "success") {
-				text = "¡Éxito!"
+				text = "Success!"
 			} else if (data.type === "inform" || data.type === "info") {
-				text = "Información:"
+				text = "Information:"
 			} else {
-				text = "¡Whoops!"
+				text = "Whoops!"
 			}
 		}
 		

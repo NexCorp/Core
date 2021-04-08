@@ -1,6 +1,9 @@
 ConfigServer = {}
 ConfigServer.SecureResources = {
-    --Insert secure resources starting with CORE
+    "nex_menu_default",
+    "nex_menu_dialog",
+	"nex_characters",
+	"nex_identificator"
 }
 
 ConfigServer.DiscordWebhooks = {
