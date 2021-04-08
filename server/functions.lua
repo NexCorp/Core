@@ -405,10 +405,28 @@ NEX.DoesJobExist = function(job, grade)
 end
 
 NEX.RegisterLog = function(playerId, category, message)
-	local xPlayer = NEX.GetPlayerFromId(playerId)
+
+	local xPlayer = nil
 	local urlToUse = NEX.Webhooks[category] or nil  
 	
-	if urlToUse ~= nil then
+	if playerId == nil then
+		xPlayer = {
+			getName = function()
+				return "Console"
+			end,
+			getDBId = function()
+				return -1
+			end,
+
+			source = -1
+		}
+	else
+		xPlayer = NEX.GetPlayerFromId(playerId)
+	end
+
+	
+	
+	if urlToUse ~= nil and xPlayer ~= nil then
 		local data = {
             embeds = {
                 {
@@ -426,16 +444,18 @@ NEX.RegisterLog = function(playerId, category, message)
                         },
                     },
                     footer = {
-                        text = "Nexus AntiCheat",
-                        icon_url = "https://images-ext-2.discordapp.net/external/05w3zIVuaUzJS6zPgq1FuOmG4kif6_NCPQQVHS864mw/https/images-ext-2.discordapp.net/external/PN4jUr9A0-7sD4iKtfJVB3MeTVaGQMhUaihqjp3qFRc/https/cdn.probot.io/HkWlJsRlXU.gif"
+                        text = Config.ServerName,
+                        icon_url = ConfigServer.DiscordWebhookImage
                     }
                 }
             },
-            username = "Nexus AntiCheat v2.0",
-            avatar_url = "https://images-ext-2.discordapp.net/external/05w3zIVuaUzJS6zPgq1FuOmG4kif6_NCPQQVHS864mw/https/images-ext-2.discordapp.net/external/PN4jUr9A0-7sD4iKtfJVB3MeTVaGQMhUaihqjp3qFRc/https/cdn.probot.io/HkWlJsRlXU.gif" 
+            username = Config.ServerName,
+            avatar_url = ConfigServer.DiscordWebhookImage
         }
         PerformHttpRequest(urlToUse, function(err, text, headers) end, 'POST', json.encode(data), { ['Content-Type'] = 'application/json' })
 	else
-		print('[NexCore] [^3WARNING^7] Register Action "'.. category ..'" was null.')
+		if Config.EnableDebug then
+			print('[NexCore] [^3WARNING^7] Discord Action Log "'.. category ..'" was null.')
+		end
 	end
 end
