@@ -23,7 +23,7 @@ function onPlayerJoined(playerId)
 
 	if identifier then
 		if NEX.GetPlayerFromIdentifier(identifier) then
-			DropPlayer(playerId, ('¡Whoops!\nError code: [Integridad en juego]\n\nEste error es causado cuando alguien esta jugando en tu cuenta de Rockstar Games.\n\nTu Identificador de Rockstar: %s'):format(identifier))
+			DropPlayer(playerId, ('Whoops!\nError code: [Integrity at stake]\n\nThis error is caused when someone is playing on your Rockstar Games account.\n\nYour Rockstar ID: %s'):format(identifier))
 		else
 			MySQL.Async.fetchScalar('SELECT 1 FROM users WHERE identifier = @identifier', {
 				['@identifier'] = identifier
@@ -104,7 +104,7 @@ function loadNEXPlayer(identifier, playerId, characterId, cbResult)
 
 			if result[1] == nil then
 				cbResult(false)
-				return TriggerClientEvent('nex:Core:showNotification', playerId, '~r~Aún no has creado tu personaje ~y~#'..characterId..'~w~.')
+				return TriggerClientEvent('nex:Core:showNotification', playerId, '~r~You have not created your character yet ~y~#'..characterId..'~w~.')
 			else
 				if characterId then
 					NEX.Players[playerId] = nil
@@ -290,11 +290,11 @@ function loadNEXPlayer(identifier, playerId, characterId, cbResult)
 		xPlayer.triggerEvent('nex:Core:registerSuggestions', NEX.RegisteredCommands)
 		
 		if characterId then
-			print(('[NexCore] [^2INFO^7] Jugador "%s^7" cambia de personaje a %s'):format(xPlayer.getName(), characterId))
+			print(('[NexCore] [^2INFO^7] Player "%s^7" change character to %s'):format(xPlayer.getName(), characterId))
 			NEX.SavePlayer(xPlayer)
 			cbResult(true)
 		else
-			print(('[NexCore] [^2INFO^7] Jugador "%s^7" se ha conectado y se asignó la ServerID %s'):format(xPlayer.getName(), playerId))
+			print(('[NexCore] [^2INFO^7] Player "%s^7" connected and assigned the ServerID %s'):format(xPlayer.getName(), playerId))
 		end
 	end)
 	

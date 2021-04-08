@@ -506,6 +506,6 @@ end
 -- end)
 
 
--- [[ NATIVOS TEXTOS ]]
-AddTextEntry("PM_PANE_LEAVE", "~b~Desconectarse ~w~de ~r~"..Config.ServerName)
-AddTextEntry("PM_PANE_QUIT", "~w~Salir de ~o~FiveM")
+-- [[ NATIVE TEXTS ]]
+AddTextEntry("PM_PANE_LEAVE", "~b~Log off ~w~from ~r~"..Config.ServerName)
+AddTextEntry("PM_PANE_QUIT", "~w~Get out of ~o~FiveM")

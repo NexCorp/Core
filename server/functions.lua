@@ -124,7 +124,7 @@ NEX.RegisterCommand = function(name, group, cb, allowConsole, suggestion)
 				else
 					local data = {
 						type = "error",
-						title = "¡Command Whoops!",
+						title = "Command Whoops!",
 						text = error,
 						length = 3000,
 						style = {}
@@ -156,7 +156,7 @@ NEX.ClearTimeout = function(id)
 end
 
 NEX.RegisterServerEvent =  function(name, cb)
-	print("Registro => ", name)
+	print("Registry => ", name)
 	NEX.ServerEvents[name] = cb
 end
 
@@ -412,8 +412,8 @@ NEX.RegisterLog = function(playerId, category, message)
 		local data = {
             embeds = {
                 {
-                    title = "[VIGILANTE] Acción Registrada",
-                    description = "Nueva acción ejecutada:",
+                    title = "[VIGILANT] Registered Action",
+                    description = "New action executed:",
                     color = 16771840,
                     fields = {
                         {
